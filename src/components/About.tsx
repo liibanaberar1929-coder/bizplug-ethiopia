@@ -14,43 +14,43 @@ export function About() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center p-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-              <Shield className="h-8 w-8 text-emerald-600" />
+          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
+              <Shield className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Genuine Products</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Verified Sellers</h3>
             <p className="text-gray-600">
-              All our products are 100% authentic and quality-tested
+              All sellers are verified for secure transactions
             </p>
           </div>
 
-          <div className="text-center p-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-              <Truck className="h-8 w-8 text-emerald-600" />
+          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
+              <Truck className="h-8 w-8 text-blue-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Fast Delivery</h3>
             <p className="text-gray-600">
-              Quick delivery across Ethiopia to your doorstep
+              Quick logistics across Ethiopia to your doorstep
             </p>
           </div>
 
-          <div className="text-center p-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-              <Clock className="h-8 w-8 text-emerald-600" />
+          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
+              <Clock className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Listings</h3>
             <p className="text-gray-600">
-              Always available to help with your orders and questions
+              Post your products instantly and reach buyers immediately
             </p>
           </div>
 
-          <div className="text-center p-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-              <Heart className="h-8 w-8 text-emerald-600" />
+          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
+              <Heart className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Fair Prices</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Community Driven</h3>
             <p className="text-gray-600">
-              Affordable prices without compromising on quality
+              Join thousands of trusted buyers and sellers
             </p>
           </div>
         </div>

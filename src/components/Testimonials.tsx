@@ -85,8 +85,8 @@ export function Testimonials() {
               const Icon = badge.icon;
               return (
                 <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-                    <Icon className="h-8 w-8 text-emerald-600" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                    <Icon className="h-8 w-8 text-blue-600" />
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">{badge.title}</h4>
                   <p className="text-gray-600">{badge.description}</p>

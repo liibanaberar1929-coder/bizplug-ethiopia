@@ -1,4 +1,4 @@
-import { MessageCircle, Send, Phone, Mail, PenTool } from 'lucide-react';
+import { MessageCircle, Send, Phone, Mail, PenTool, Facebook, Instagram } from 'lucide-react';
 
 interface ContactProps {
   onOpenForm: () => void;
@@ -53,8 +53,8 @@ export function Contact({ onOpenForm }: ContactProps) {
               href="tel:+251907096745"
               className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center space-x-4 group"
             >
-              <div className="flex-shrink-0 w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                <Phone className="h-7 w-7 text-emerald-600" />
+              <div className="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                <Phone className="h-7 w-7 text-blue-600" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-1">Phone</h3>

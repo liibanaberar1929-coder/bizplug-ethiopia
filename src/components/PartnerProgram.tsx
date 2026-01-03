@@ -68,7 +68,7 @@ export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
                 key={index}
                 className={`rounded-xl p-8 transition-transform hover:scale-105 ${
                   tier.highlighted
-                    ? 'bg-gradient-to-br from-emerald-600 to-teal-600 text-white shadow-2xl relative -mt-4'
+                    ? 'bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-2xl relative -mt-4'
                     : 'bg-white text-gray-900 shadow-lg'
                 }`}
               >
@@ -79,23 +79,23 @@ export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
                 )}
 
                 <div className="flex items-center space-x-3 mb-4">
-                  <Icon className={`h-8 w-8 ${tier.highlighted ? 'text-yellow-300' : 'text-emerald-600'}`} />
+                  <Icon className={`h-8 w-8 ${tier.highlighted ? 'text-yellow-300' : 'text-blue-600'}`} />
                   <h3 className="text-2xl font-bold">{tier.name}</h3>
                 </div>
 
-                <p className={`text-lg font-semibold mb-2 ${tier.highlighted ? 'text-emerald-50' : 'text-emerald-600'}`}>
+                <p className={`text-lg font-semibold mb-2 ${tier.highlighted ? 'text-blue-50' : 'text-blue-600'}`}>
                   {tier.price}
                 </p>
 
-                <p className={`text-sm mb-6 ${tier.highlighted ? 'text-emerald-100' : 'text-gray-600'}`}>
+                <p className={`text-sm mb-6 ${tier.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>
                   {tier.description}
                 </p>
 
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-start space-x-3">
-                      <Zap className={`h-5 w-5 flex-shrink-0 mt-0.5 ${tier.highlighted ? 'text-yellow-300' : 'text-emerald-600'}`} />
-                      <span className={tier.highlighted ? 'text-emerald-50' : 'text-gray-700'}>{feature}</span>
+                      <Zap className={`h-5 w-5 flex-shrink-0 mt-0.5 ${tier.highlighted ? 'text-yellow-300' : 'text-blue-600'}`} />
+                      <span className={tier.highlighted ? 'text-blue-50' : 'text-gray-700'}>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -104,8 +104,8 @@ export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
                   onClick={onOpenForm}
                   className={`w-full py-3 rounded-lg font-semibold transition-all ${
                     tier.highlighted
-                      ? 'bg-white text-emerald-600 hover:bg-emerald-50'
-                      : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                      ? 'bg-white text-blue-600 hover:bg-blue-50'
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
                   }`}
                 >
                   Get Started
@@ -119,25 +119,25 @@ export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Partner with BizPlug?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-bold text-lg text-emerald-600 mb-2">Growing Customer Base</h4>
+              <h4 className="font-bold text-lg text-blue-600 mb-2">Growing Customer Base</h4>
               <p className="text-gray-600">
                 Reach thousands of Ethiopian customers looking for quality products and services.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-lg text-emerald-600 mb-2">Easy Order Management</h4>
+              <h4 className="font-bold text-lg text-blue-600 mb-2">Easy Order Management</h4>
               <p className="text-gray-600">
                 Receive orders directly and manage them through our simple dashboard system.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-lg text-emerald-600 mb-2">No Upfront Costs</h4>
+              <h4 className="font-bold text-lg text-blue-600 mb-2">No Upfront Costs</h4>
               <p className="text-gray-600">
                 Flexible pricing plans that work for businesses of any size. Start small, scale up.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-lg text-emerald-600 mb-2">24/7 Support</h4>
+              <h4 className="font-bold text-lg text-blue-600 mb-2">24/7 Support</h4>
               <p className="text-gray-600">
                 Our team is always available to help you succeed on the platform.
               </p>

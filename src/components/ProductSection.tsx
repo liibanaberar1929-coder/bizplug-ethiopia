@@ -45,24 +45,24 @@ export function ProductSection() {
   }
 
   return (
-    <section id="products" className="py-16 bg-gray-50">
+    <section id="products" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Our Products
+        <div className="text-center mb-14">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Featured Listings
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Browse our collection of affordable and quality products
+            Discover the latest products from verified sellers across Ethiopia
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-14">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
               selectedCategory === 'all'
-                ? 'bg-emerald-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
+                ? 'bg-blue-600 text-white shadow-md'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
             All Products
@@ -71,10 +71,10 @@ export function ProductSection() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.slug)}
-              className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
                 selectedCategory === category.slug
-                  ? 'bg-emerald-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
               {category.name}
@@ -89,7 +89,7 @@ export function ProductSection() {
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-16">
             <p className="text-gray-500 text-lg">No products found in this category</p>
           </div>
         )}

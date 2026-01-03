@@ -1,4 +1,4 @@
-import { ShoppingBag, Phone, Menu, X, Settings } from 'lucide-react';
+import { Zap, Phone, Menu, X, Settings } from 'lucide-react';
 import { useState } from 'react';
 
 interface HeaderProps {
@@ -17,40 +17,42 @@ export function Header({ onAdminAccess }: HeaderProps) {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+    <header className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+      <div className="container mx-auto px-4 py-3.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <ShoppingBag className="h-8 w-8 text-emerald-600" />
+          <div className="flex items-center space-x-2.5">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <Zap className="h-6 w-6 text-white" />
+            </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">BizPlug</h1>
-              <p className="text-xs text-emerald-600">Ethiopia</p>
+              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">BizPlug</h1>
+              <p className="text-xs text-gray-500">Ethiopia's Marketplace</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-2">
             <button
               onClick={() => scrollToSection('products')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
             >
-              Shop
+              Browse
             </button>
             <button
               onClick={() => scrollToSection('partner')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
             >
               Sell
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="flex items-center space-x-2 bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
+              className="flex items-center space-x-2 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
             >
               <Phone className="h-4 w-4" />
               <span>Contact</span>
             </button>
             <button
               onClick={onAdminAccess}
-              className="text-gray-500 hover:text-gray-700 transition-colors p-2"
+              className="text-gray-500 hover:text-gray-700 transition-colors p-2 ml-2"
               title="Admin"
             >
               <Settings className="h-5 w-5" />
@@ -66,29 +68,29 @@ export function Header({ onAdminAccess }: HeaderProps) {
         </div>
 
         {mobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-4">
+          <nav className="md:hidden mt-4 pb-4 space-y-3 border-t border-gray-100 pt-4">
             <button
               onClick={() => scrollToSection('products')}
-              className="block w-full text-left text-gray-700 hover:text-emerald-600 transition-colors font-medium py-2"
+              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors font-medium py-2.5"
             >
-              Shop
+              Browse Products
             </button>
             <button
               onClick={() => scrollToSection('partner')}
-              className="block w-full text-left text-gray-700 hover:text-emerald-600 transition-colors font-medium py-2"
+              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors font-medium py-2.5"
             >
-              Sell
+              Start Selling
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="flex items-center space-x-2 bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
+              className="flex items-center space-x-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors w-full font-medium"
             >
               <Phone className="h-4 w-4" />
-              <span>Contact</span>
+              <span>Contact Us</span>
             </button>
             <button
               onClick={onAdminAccess}
-              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors py-2"
+              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors py-2.5"
             >
               <Settings className="h-4 w-4" />
               <span>Admin</span>
