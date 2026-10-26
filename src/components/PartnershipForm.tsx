@@ -6,6 +6,27 @@ interface PartnershipFormProps {
   onClose: () => void;
 }
 
+const INDUSTRY_OPTIONS = [
+  'Construction',
+  'Finance',
+  'Logistics',
+  'Legal',
+  'Technology',
+  'Agriculture',
+  'Manufacturing',
+  'Energy',
+  'Other',
+];
+
+const CATEGORY_SLUGS = [
+  'construction',
+  'finance',
+  'logistics',
+  'legal',
+  'technology',
+  'agriculture',
+];
+
 export function PartnershipForm({ onClose }: PartnershipFormProps) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -34,6 +55,7 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
       setMessageType('error');
       return;
     }
+    setMessage('');
     setStep(2);
   }
 
@@ -76,16 +98,19 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
     }
   }
 
+  const inputClass =
+    'w-full px-4 py-2 border border-navy-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-action-500';
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-96 overflow-y-auto">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
-          <h2 className="text-2xl font-bold text-gray-900">
-            {step === 1 ? 'Partner with BizPlug' : 'Your Product Details'}
+    <div className="fixed inset-0 bg-navy-950/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-96 overflow-y-auto">
+        <div className="flex items-center justify-between p-6 border-b border-navy-100 sticky top-0 bg-white">
+          <h2 className="text-2xl font-bold text-navy-900 font-display">
+            {step === 1 ? 'Partner with BizPlug' : 'Your Business Details'}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="text-navy-400 hover:text-navy-700 transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
@@ -95,7 +120,7 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
           {message && (
             <div className={`flex items-center space-x-3 p-4 rounded-lg mb-6 ${
               messageType === 'success'
-                ? 'bg-green-50 text-green-800 border border-green-200'
+                ? 'bg-action-50 text-action-800 border border-action-200'
                 : 'bg-red-50 text-red-800 border border-red-200'
             }`}>
               {messageType === 'success' ? (
@@ -111,59 +136,46 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
             <form onSubmit={handleStep1Submit}>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Business Name *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Business Name *</label>
                   <input
                     type="text"
                     value={sellerData.business_name}
                     onChange={e => setSellerData({ ...sellerData, business_name: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                     placeholder="Your business name"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Email *</label>
                   <input
                     type="email"
                     value={sellerData.email}
                     onChange={e => setSellerData({ ...sellerData, email: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                     placeholder="your@email.com"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Phone *</label>
                   <input
                     type="tel"
                     value={sellerData.phone}
                     onChange={e => setSellerData({ ...sellerData, phone: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                     placeholder="+251..."
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    What do you sell? *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">What do you offer? *</label>
                   <select
                     value={sellerData.product_type}
                     onChange={e => setSellerData({ ...sellerData, product_type: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                   >
-                    <option value="">Select category</option>
-                    <option value="Gadgets">Gadgets</option>
-                    <option value="Fashion">Fashion & Accessories</option>
-                    <option value="Smart Tools">Smart Tools</option>
-                    <option value="Services">Services</option>
-                    <option value="Other">Other</option>
+                    <option value="">Select industry</option>
+                    {INDUSTRY_OPTIONS.map((o) => (
+                      <option key={o} value={o}>{o}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -171,13 +183,13 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
                   <button
                     type="button"
                     onClick={onClose}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2 border border-navy-200 text-navy-700 rounded-lg hover:bg-navy-50 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+                    className="flex-1 px-4 py-2 bg-action-600 text-white rounded-lg hover:bg-action-500 transition-colors"
                   >
                     Next
                   </button>
@@ -188,90 +200,77 @@ export function PartnershipForm({ onClose }: PartnershipFormProps) {
             <form onSubmit={handleFinalSubmit}>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Product/Service Name *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Product/Service Name *</label>
                   <input
                     type="text"
                     value={listingData.name}
                     onChange={e => setListingData({ ...listingData, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    placeholder="Product name"
+                    className={inputClass}
+                    placeholder="Product or service name"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Description *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Description *</label>
                   <textarea
                     value={listingData.description}
                     onChange={e => setListingData({ ...listingData, description: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                     placeholder="Describe your product or service"
                   />
                 </div>
-
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Price (ETB) *
-                    </label>
+                    <label className="block text-sm font-medium text-navy-700 mb-1">Price (ETB) *</label>
                     <input
                       type="number"
                       value={listingData.price}
                       onChange={e => setListingData({ ...listingData, price: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className={inputClass}
                       placeholder="0.00"
                       step="0.01"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Category *
-                    </label>
+                    <label className="block text-sm font-medium text-navy-700 mb-1">Category *</label>
                     <select
                       value={listingData.category}
                       onChange={e => setListingData({ ...listingData, category: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className={inputClass}
                     >
                       <option value="">Select category</option>
-                      <option value="Gadgets">Gadgets</option>
-                      <option value="Fashion Accessories">Fashion Accessories</option>
-                      <option value="Smart Tools">Smart Tools</option>
-                      <option value="Services">Services</option>
+                      {CATEGORY_SLUGS.map((c) => (
+                        <option key={c} value={c}>
+                          {c.charAt(0).toUpperCase() + c.slice(1)}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Image URL *
-                  </label>
+                  <label className="block text-sm font-medium text-navy-700 mb-1">Image URL *</label>
                   <input
                     type="url"
                     value={listingData.image_url}
                     onChange={e => setListingData({ ...listingData, image_url: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className={inputClass}
                     placeholder="https://..."
                   />
-                  <p className="text-xs text-gray-500 mt-1">Use Pexels or upload your product image online</p>
+                  <p className="text-xs text-navy-400 mt-1">Use a Pexels image URL or your own hosted image.</p>
                 </div>
 
                 <div className="flex space-x-3 pt-4">
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2 border border-navy-200 text-navy-700 rounded-lg hover:bg-navy-50 transition-colors"
                   >
                     Back
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50"
+                    className="flex-1 px-4 py-2 bg-action-600 text-white rounded-lg hover:bg-action-500 transition-colors disabled:opacity-50"
                   >
                     {loading ? 'Submitting...' : 'Submit Application'}
                   </button>

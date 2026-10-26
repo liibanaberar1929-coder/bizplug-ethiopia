@@ -1,58 +1,50 @@
-import { Shield, Truck, Clock, Heart } from 'lucide-react';
+import { ShieldCheck, Truck, Clock, Heart, type LucideIcon } from 'lucide-react';
+
+interface Feature {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+}
+
+const FEATURES: Feature[] = [
+  { icon: ShieldCheck, title: 'Verified Businesses', text: 'Every business is vetted before listing on BizPlug.' },
+  { icon: Truck, title: 'Nationwide Reach', text: 'Connect with partners across Addis Ababa and every region.' },
+  { icon: Clock, title: 'Fast Introductions', text: 'Get plugged in with a business in minutes, not weeks.' },
+  { icon: Heart, title: 'Community Vouching', text: 'Trust signals come from real buyers, not paid placement.' },
+];
 
 export function About() {
   return (
-    <section id="about" className="py-16 bg-white">
+    <section id="about" className="py-20 bg-navy-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose BizPlug Ethiopia?
+          <span className="inline-block text-action-400 font-semibold text-sm uppercase tracking-wider mb-3">
+            Why BizPlug
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 font-display">
+            A trust-first marketplace for serious businesses
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            We're committed to providing quality products and excellent service
+          <p className="text-navy-200 text-lg max-w-2xl mx-auto">
+            We connect buyers and verified sellers across Ethiopia with transparency at the core.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
-              <Shield className="h-8 w-8 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Verified Sellers</h3>
-            <p className="text-gray-600">
-              All sellers are verified for secure transactions
-            </p>
-          </div>
-
-          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
-              <Truck className="h-8 w-8 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Fast Delivery</h3>
-            <p className="text-gray-600">
-              Quick logistics across Ethiopia to your doorstep
-            </p>
-          </div>
-
-          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
-              <Clock className="h-8 w-8 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Listings</h3>
-            <p className="text-gray-600">
-              Post your products instantly and reach buyers immediately
-            </p>
-          </div>
-
-          <div className="text-center p-6 group hover:bg-gray-50 rounded-xl transition-colors">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 group-hover:bg-blue-200 transition-colors">
-              <Heart className="h-8 w-8 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Community Driven</h3>
-            <p className="text-gray-600">
-              Join thousands of trusted buyers and sellers
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FEATURES.map((f) => {
+            const Icon = f.icon;
+            return (
+              <div
+                key={f.title}
+                className="text-center p-6 bg-navy-700/50 rounded-2xl border border-navy-600 hover:border-action-500/50 hover:bg-navy-700 transition-all group"
+              >
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-action-600/15 border border-action-600/30 rounded-2xl mb-4 group-hover:bg-action-600 transition-colors">
+                  <Icon className="h-7 w-7 text-action-400 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{f.title}</h3>
+                <p className="text-navy-200 text-sm">{f.text}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

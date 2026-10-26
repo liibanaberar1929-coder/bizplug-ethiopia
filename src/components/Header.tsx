@@ -1,4 +1,4 @@
-import { Zap, Phone, Menu, X, Settings } from 'lucide-react';
+import { Zap, Menu, X, Settings, Search, Building2 } from 'lucide-react';
 import { useState } from 'react';
 
 interface HeaderProps {
@@ -17,80 +17,110 @@ export function Header({ onAdminAccess }: HeaderProps) {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <header className="bg-navy-800/95 backdrop-blur-md border-b border-navy-700 sticky top-0 z-50 shadow-lg shadow-navy-950/30">
       <div className="container mx-auto px-4 py-3.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2.5">
-            <div className="bg-blue-600 p-2 rounded-lg">
+          <button
+            onClick={() => scrollToSection('top')}
+            className="flex items-center space-x-2.5 group"
+          >
+            <div className="bg-action-600 p-2 rounded-lg group-hover:bg-action-500 transition-colors shadow-md shadow-action-600/30">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">BizPlug</h1>
-              <p className="text-xs text-gray-500">Ethiopia's Marketplace</p>
+            <div className="text-left">
+              <h1 className="text-xl font-bold text-white tracking-tight font-display">BizPlug</h1>
+              <p className="text-[11px] text-navy-200 -mt-0.5">Ethiopia B2B Marketplace</p>
             </div>
-          </div>
+          </button>
 
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-1">
             <button
-              onClick={() => scrollToSection('products')}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
+              onClick={() => scrollToSection('categories')}
+              className="text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium px-4 py-2 rounded-lg"
             >
-              Browse
+              Categories
+            </button>
+            <button
+              onClick={() => scrollToSection('businesses')}
+              className="text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium px-4 py-2 rounded-lg"
+            >
+              Businesses
+            </button>
+            <button
+              onClick={() => scrollToSection('spotlight')}
+              className="text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium px-4 py-2 rounded-lg"
+            >
+              Spotlight
             </button>
             <button
               onClick={() => scrollToSection('partner')}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium px-4 py-2"
+              className="text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium px-4 py-2 rounded-lg"
             >
-              Sell
+              List Your Business
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
-              className="flex items-center space-x-2 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              onClick={() => scrollToSection('search')}
+              className="flex items-center space-x-2 bg-action-600 text-white px-4 py-2 rounded-lg hover:bg-action-500 transition-colors font-medium shadow-md shadow-action-600/30"
             >
-              <Phone className="h-4 w-4" />
-              <span>Contact</span>
+              <Search className="h-4 w-4" />
+              <span>Search</span>
             </button>
             <button
               onClick={onAdminAccess}
-              className="text-gray-500 hover:text-gray-700 transition-colors p-2 ml-2"
+              className="text-navy-300 hover:text-white transition-colors p-2 ml-1"
               title="Admin"
+              aria-label="Admin access"
             >
               <Settings className="h-5 w-5" />
             </button>
           </nav>
 
           <button
-            className="md:hidden text-gray-700"
+            className="md:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-3 border-t border-gray-100 pt-4">
+          <nav className="md:hidden mt-3 pb-2 space-y-1 border-t border-navy-700 pt-4">
             <button
-              onClick={() => scrollToSection('products')}
-              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors font-medium py-2.5"
+              onClick={() => scrollToSection('categories')}
+              className="flex items-center space-x-3 w-full text-left text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium py-3 px-3 rounded-lg"
             >
-              Browse Products
+              <Building2 className="h-5 w-5 text-action-400" />
+              <span>Categories</span>
+            </button>
+            <button
+              onClick={() => scrollToSection('businesses')}
+              className="block w-full text-left text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium py-3 px-3 rounded-lg"
+            >
+              Businesses
+            </button>
+            <button
+              onClick={() => scrollToSection('spotlight')}
+              className="block w-full text-left text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium py-3 px-3 rounded-lg"
+            >
+              Spotlight
             </button>
             <button
               onClick={() => scrollToSection('partner')}
-              className="block w-full text-left text-gray-700 hover:text-blue-600 transition-colors font-medium py-2.5"
+              className="block w-full text-left text-navy-100 hover:text-white hover:bg-navy-700 transition-colors font-medium py-3 px-3 rounded-lg"
             >
-              Start Selling
+              List Your Business
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
-              className="flex items-center space-x-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors w-full font-medium"
+              onClick={() => scrollToSection('search')}
+              className="flex items-center justify-center space-x-2 bg-action-600 text-white px-5 py-3 rounded-lg hover:bg-action-500 transition-colors w-full font-medium mt-2"
             >
-              <Phone className="h-4 w-4" />
-              <span>Contact Us</span>
+              <Search className="h-4 w-4" />
+              <span>Search Businesses</span>
             </button>
             <button
               onClick={onAdminAccess}
-              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors py-2.5"
+              className="flex items-center space-x-2 text-navy-300 hover:text-white transition-colors py-3 px-3 rounded-lg w-full"
             >
               <Settings className="h-4 w-4" />
               <span>Admin</span>

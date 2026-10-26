@@ -1,111 +1,118 @@
-import { Zap, Target, Users, TrendingUp } from 'lucide-react';
+import { Zap, Target, Users, TrendingUp, type LucideIcon } from 'lucide-react';
 
 interface PartnerProgramProps {
   onOpenForm: () => void;
 }
 
-export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
-  const tiers = [
-    {
-      name: 'Bronze',
-      price: 'Starting at 500 ETB/month',
-      description: 'Perfect for getting started',
-      features: [
-        'Basic product listing',
-        'Appear in category browse',
-        'Contact details visible',
-        'Email notifications for orders',
-      ],
-      icon: Users,
-    },
-    {
-      name: 'Silver',
-      price: 'Starting at 1,500 ETB/month',
-      description: 'For growing businesses',
-      features: [
-        'Everything in Bronze',
-        'Featured spot on homepage',
-        'Social media promotion',
-        'Priority order notifications',
-        'Up to 5 featured products',
-      ],
-      icon: Target,
-      highlighted: true,
-    },
-    {
-      name: 'Gold',
-      price: 'Starting at 3,500 ETB/month',
-      description: 'Maximum exposure',
-      features: [
-        'Everything in Silver',
-        'Premium featured spot',
-        'Weekly social media posts',
-        'Monthly newsletter feature',
-        'Up to 15 featured products',
-        'Priority support',
-      ],
-      icon: TrendingUp,
-    },
-  ];
+interface Tier {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  icon: LucideIcon;
+  highlighted?: boolean;
+}
 
+const TIERS: Tier[] = [
+  {
+    name: 'Bronze',
+    price: 'Starting at 500 ETB/month',
+    description: 'Perfect for getting started',
+    features: [
+      'Basic business listing',
+      'Appear in category browse',
+      'Contact details visible',
+      'Email notifications for leads',
+    ],
+    icon: Users,
+  },
+  {
+    name: 'Silver',
+    price: 'Starting at 1,500 ETB/month',
+    description: 'For growing businesses',
+    features: [
+      'Everything in Bronze',
+      'Featured spot on homepage',
+      'Social media promotion',
+      'Priority lead notifications',
+      'Up to 5 featured products',
+    ],
+    icon: Target,
+    highlighted: true,
+  },
+  {
+    name: 'Gold',
+    price: 'Starting at 3,500 ETB/month',
+    description: 'Maximum exposure',
+    features: [
+      'Everything in Silver',
+      'Premium featured spot',
+      'Weekly social media posts',
+      'Monthly newsletter feature',
+      'Up to 15 featured products',
+      'Priority support',
+    ],
+    icon: TrendingUp,
+  },
+];
+
+export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
   return (
-    <section id="partner" className="py-16 bg-gray-50">
+    <section id="partner" className="py-20 bg-navy-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Grow Your Business with BizPlug
+          <span className="inline-block text-action-600 font-semibold text-sm uppercase tracking-wider mb-3">
+            Partner Program
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 font-display">
+            Grow your business with BizPlug
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            List your products, reach thousands of customers across Ethiopia, and scale your business with our trusted marketplace platform.
+          <p className="text-navy-500 text-lg max-w-2xl mx-auto">
+            List your business, reach thousands of buyers across Ethiopia, and scale with a trusted platform.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {tiers.map((tier, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {TIERS.map((tier) => {
             const Icon = tier.icon;
             return (
               <div
-                key={index}
-                className={`rounded-xl p-8 transition-transform hover:scale-105 ${
+                key={tier.name}
+                className={`rounded-2xl p-8 transition-all hover:-translate-y-1 ${
                   tier.highlighted
-                    ? 'bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-2xl relative -mt-4'
-                    : 'bg-white text-gray-900 shadow-lg'
+                    ? 'bg-navy-900 text-white shadow-2xl shadow-navy-900/20 relative ring-2 ring-action-500'
+                    : 'bg-white text-navy-900 shadow-lg border border-navy-100'
                 }`}
               >
                 {tier.highlighted && (
-                  <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 px-4 py-1 rounded-bl-lg rounded-tr-xl text-xs font-bold">
-                    MOST POPULAR
+                  <div className="absolute top-0 right-0 bg-action-500 text-white px-4 py-1 rounded-bl-lg rounded-tr-2xl text-xs font-bold uppercase tracking-wide">
+                    Most Popular
                   </div>
                 )}
-
                 <div className="flex items-center space-x-3 mb-4">
-                  <Icon className={`h-8 w-8 ${tier.highlighted ? 'text-yellow-300' : 'text-blue-600'}`} />
-                  <h3 className="text-2xl font-bold">{tier.name}</h3>
+                  <Icon className={`h-7 w-7 ${tier.highlighted ? 'text-action-400' : 'text-action-600'}`} />
+                  <h3 className="text-2xl font-bold font-display">{tier.name}</h3>
                 </div>
-
-                <p className={`text-lg font-semibold mb-2 ${tier.highlighted ? 'text-blue-50' : 'text-blue-600'}`}>
+                <p className={`text-base font-semibold mb-1 ${tier.highlighted ? 'text-action-300' : 'text-action-600'}`}>
                   {tier.price}
                 </p>
-
-                <p className={`text-sm mb-6 ${tier.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>
+                <p className={`text-sm mb-6 ${tier.highlighted ? 'text-navy-200' : 'text-navy-500'}`}>
                   {tier.description}
                 </p>
-
                 <ul className="space-y-3 mb-8">
-                  {tier.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-start space-x-3">
-                      <Zap className={`h-5 w-5 flex-shrink-0 mt-0.5 ${tier.highlighted ? 'text-yellow-300' : 'text-blue-600'}`} />
-                      <span className={tier.highlighted ? 'text-blue-50' : 'text-gray-700'}>{feature}</span>
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start space-x-3">
+                      <Zap className={`h-4 w-4 flex-shrink-0 mt-0.5 ${tier.highlighted ? 'text-action-400' : 'text-action-600'}`} />
+                      <span className={tier.highlighted ? 'text-navy-100' : 'text-navy-700'}>{feature}</span>
                     </li>
                   ))}
                 </ul>
-
                 <button
                   onClick={onOpenForm}
-                  className={`w-full py-3 rounded-lg font-semibold transition-all ${
+                  className={`w-full py-3 rounded-xl font-semibold transition-colors ${
                     tier.highlighted
-                      ? 'bg-white text-blue-600 hover:bg-blue-50'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                      ? 'bg-action-600 text-white hover:bg-action-500'
+                      : 'bg-navy-900 text-white hover:bg-navy-800'
                   }`}
                 >
                   Get Started
@@ -115,33 +122,20 @@ export function PartnerProgram({ onOpenForm }: PartnerProgramProps) {
           })}
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Partner with BizPlug?</h3>
+        <div className="bg-white rounded-2xl shadow-lg border border-navy-100 p-8 md:p-10">
+          <h3 className="text-2xl font-bold text-navy-900 mb-6 font-display">Why partner with BizPlug?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-bold text-lg text-blue-600 mb-2">Growing Customer Base</h4>
-              <p className="text-gray-600">
-                Reach thousands of Ethiopian customers looking for quality products and services.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg text-blue-600 mb-2">Easy Order Management</h4>
-              <p className="text-gray-600">
-                Receive orders directly and manage them through our simple dashboard system.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg text-blue-600 mb-2">No Upfront Costs</h4>
-              <p className="text-gray-600">
-                Flexible pricing plans that work for businesses of any size. Start small, scale up.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg text-blue-600 mb-2">24/7 Support</h4>
-              <p className="text-gray-600">
-                Our team is always available to help you succeed on the platform.
-              </p>
-            </div>
+            {[
+              { t: 'Growing Buyer Base', d: 'Reach thousands of Ethiopian businesses looking for trusted partners.' },
+              { t: 'Easy Lead Management', d: 'Receive inquiries directly and manage them through a simple dashboard.' },
+              { t: 'No Upfront Costs', d: 'Flexible plans for businesses of any size. Start small, scale up.' },
+              { t: 'Priority Support', d: 'Our team is always available to help you succeed on the platform.' },
+            ].map((item) => (
+              <div key={item.t}>
+                <h4 className="font-bold text-lg text-action-600 mb-2">{item.t}</h4>
+                <p className="text-navy-600">{item.d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

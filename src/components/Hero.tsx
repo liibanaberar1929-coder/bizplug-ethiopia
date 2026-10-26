@@ -1,85 +1,146 @@
-import { Sparkles, TrendingUp, Zap, Shield } from 'lucide-react';
+import { Search, TrendingUp, ShieldCheck, Building2, ArrowRight } from 'lucide-react';
+import { REGIONS, INDUSTRIES, type Region } from '../lib/bizdata';
 
-export function Hero() {
-  const scrollToProducts = () => {
-    const element = document.getElementById('products');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+interface HeroProps {
+  region: Region;
+  setRegion: (r: Region) => void;
+  industry: string;
+  setIndustry: (i: string) => void;
+  onSearch: () => void;
+}
 
-  const scrollToPartner = () => {
-    const element = document.getElementById('partner');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+export function Hero({ region, setRegion, industry, setIndustry, onSearch }: HeroProps) {
+  const scrollToSpotlight = () => {
+    document.getElementById('spotlight')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="bg-white py-20 md:py-32">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full mb-8">
-            <Sparkles className="h-4 w-4" />
-            <span className="text-sm font-semibold">Ethiopia's #1 Trusted Marketplace</span>
+    <section id="top" className="relative bg-navy-900 overflow-hidden">
+      {/* Decorative gradient mesh */}
+      <div className="absolute inset-0 opacity-60">
+        <div className="absolute -top-32 -right-32 w-[480px] h-[480px] bg-action-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -left-40 w-[420px] h-[420px] bg-navy-500/30 rounded-full blur-3xl" />
+      </div>
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className="container mx-auto px-4 py-20 md:py-28 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center space-x-2 bg-action-600/15 border border-action-600/30 text-action-300 px-4 py-2 rounded-full mb-8 animate-fade-in">
+            <ShieldCheck className="h-4 w-4" />
+            <span className="text-sm font-semibold tracking-wide">Ethiopia&apos;s Trust-First B2B Network</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            Find what you need.<br />Sell what you got.
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-[1.05] font-display animate-fade-up">
+            Where Ethiopian
+            <br />
+            <span className="text-action-400">businesses get plugged in.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-2 leading-relaxed">
-            Connect with thousands of buyers and sellers across Ethiopia
+          <p className="text-lg md:text-xl text-navy-200 mb-2 leading-relaxed max-w-2xl mx-auto animate-fade-up">
+            Discover verified partners across construction, finance, logistics, legal and more.
+          </p>
+          <p className="text-base text-navy-300 mb-10 animate-fade-up">
+            Search by region and industry, vouch for businesses you trust, and connect instantly.
           </p>
 
-          <p className="text-lg text-gray-500 mb-12 leading-relaxed">
-            Shop products, hire services, post jobs, or launch your business instantly.
-          </p>
+          {/* Search bar */}
+          <div id="search" className="bg-navy-800/80 backdrop-blur-md border border-navy-600 rounded-2xl p-3 md:p-4 shadow-2xl shadow-navy-950/50 max-w-3xl mx-auto animate-fade-up">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-3">
+              <div className="relative">
+                <label className="absolute left-3 top-2 text-[10px] font-semibold uppercase tracking-wider text-navy-300">
+                  Region
+                </label>
+                <select
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value as Region)}
+                  className="w-full appearance-none bg-navy-700 text-white text-sm font-medium pt-6 pb-2 px-3 rounded-xl border border-navy-600 focus:outline-none focus:ring-2 focus:ring-action-500 cursor-pointer"
+                >
+                  {REGIONS.map((r) => (
+                    <option key={r} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <div className="relative">
+                <label className="absolute left-3 top-2 text-[10px] font-semibold uppercase tracking-wider text-navy-300">
+                  Industry
+                </label>
+                <select
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                  className="w-full appearance-none bg-navy-700 text-white text-sm font-medium pt-6 pb-2 px-3 rounded-xl border border-navy-600 focus:outline-none focus:ring-2 focus:ring-action-500 cursor-pointer"
+                >
+                  <option value="all">All Industries</option>
+                  {INDUSTRIES.map((i) => (
+                    <option key={i.slug} value={i.slug}>
+                      {i.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <button
+                onClick={onSearch}
+                className="flex items-center justify-center space-x-2 bg-action-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-action-500 transition-colors shadow-lg shadow-action-600/30"
+              >
+                <Search className="h-5 w-5" />
+                <span>Search</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <button
-              onClick={scrollToProducts}
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
+              onClick={onSearch}
+              className="bg-action-600 text-white px-8 py-3.5 rounded-lg text-base font-semibold hover:bg-action-500 transition-all shadow-lg shadow-action-600/30 hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center space-x-2"
             >
-              Browse Now
+              <span>Browse Businesses</span>
+              <ArrowRight className="h-5 w-5" />
             </button>
             <button
-              onClick={scrollToPartner}
-              className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-all flex items-center justify-center space-x-2"
+              onClick={scrollToSpotlight}
+              className="bg-transparent text-white border-2 border-navy-500 px-8 py-3.5 rounded-lg text-base font-semibold hover:bg-navy-700 transition-all flex items-center justify-center space-x-2"
             >
               <TrendingUp className="h-5 w-5" />
-              <span>Start Selling</span>
+              <span>See Spotlight</span>
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="flex items-start space-x-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto">
+            <div className="flex items-start space-x-3 text-left">
               <div className="flex-shrink-0">
-                <Zap className="h-6 w-6 text-blue-600 mt-1" />
+                <Building2 className="h-6 w-6 text-action-400 mt-1" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Lightning Fast</h3>
-                <p className="text-gray-600 text-sm">Quick listings and instant notifications</p>
+                <h3 className="font-semibold text-white">Verified Network</h3>
+                <p className="text-navy-300 text-sm">Every business is vetted before listing</p>
               </div>
             </div>
-
-            <div className="flex items-start space-x-3">
+            <div className="flex items-start space-x-3 text-left">
               <div className="flex-shrink-0">
-                <Shield className="h-6 w-6 text-blue-600 mt-1" />
+                <ShieldCheck className="h-6 w-6 text-action-400 mt-1" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Verified Users</h3>
-                <p className="text-gray-600 text-sm">Safe transactions with verified buyers</p>
+                <h3 className="font-semibold text-white">Community Vouching</h3>
+                <p className="text-navy-300 text-sm">Trust earned, not bought</p>
               </div>
             </div>
-
-            <div className="flex items-start space-x-3">
+            <div className="flex items-start space-x-3 text-left">
               <div className="flex-shrink-0">
-                <Sparkles className="h-6 w-6 text-blue-600 mt-1" />
+                <Search className="h-6 w-6 text-action-400 mt-1" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Support 24/7</h3>
-                <p className="text-gray-600 text-sm">Always here to help you succeed</p>
+                <h3 className="font-semibold text-white">Smart Filtering</h3>
+                <p className="text-navy-300 text-sm">Find partners by region &amp; industry</p>
               </div>
             </div>
           </div>
